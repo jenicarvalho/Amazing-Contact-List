@@ -36,4 +36,14 @@ export const Button = styled('button', {
       },
     },
   },
+
+  '&:disabled': {
+    background: '$lightGray',
+    color: '$black',
+    cursor: 'not-allowed',
+    '&:hover': {
+      backgroundColor: 'lightGray',
+    }
+  },
+
 })
