@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react'
+import { useCallback, useRef, useState, RefObject } from 'react'
 import ContactService from '../../services/contact-service'
 import { getRandomInt } from '../../utils/functions'
 import { ContactTypes } from '../../types/contact'
@@ -10,8 +10,16 @@ interface Props {
   handleAddContact: (data: ContactTypes) => void,
   toggleContact: () => void
 }
+interface Ref {
+  current?: object,
+  value: string
+}
 
 const NewContact = ({ handleAddContact, toggleContact }: Props) => {
+
+  const [disabled, setDisabled] = useState(true)
+  const [error, setError] = useState([])
+
   const nameInput = useRef<HTMLInputElement>(null)
   const emailInput = useRef<HTMLInputElement>(null)
   const zipInput = useRef<HTMLInputElement>(null)
@@ -41,14 +49,22 @@ const NewContact = ({ handleAddContact, toggleContact }: Props) => {
     []
   )
 
+  const onBlurHandler = (ref: RefObject<Ref>) => {
+    if (ref.current?.value !== "") {
+     return setDisabled(false)
+    }  
+    setDisabled(true)
+ }
+
+
   return (
     <Container>
       <h2>Add new contact</h2>
       <Form onSubmit={formHandler()}>
-        <Input type='text' placeholder='Name' ref={nameInput} />
-        <Input type='text' placeholder='Email' ref={emailInput} />
-        <Input type='text' placeholder='Zip code' ref={zipInput} />
-        <Button color='primary' role='button' size='small'>Save</Button>
+        <Input type='text' placeholder='Name' ref={nameInput} required onBlur={() => onBlurHandler(nameInput)} />
+        <Input type='email' placeholder='Email' ref={emailInput} required onBlur={() => onBlurHandler(emailInput)} />
+        <Input type='text' placeholder='Zip code' ref={zipInput}  />
+        <Button color='primary' role='button' size='small' disabled={disabled}>Save</Button>
       </Form>
     </Container>
   )

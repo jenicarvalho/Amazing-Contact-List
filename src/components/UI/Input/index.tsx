@@ -3,13 +3,15 @@ import { InputStyled } from './styles'
 
 interface Props {
   type: string,
-  placeholder: string
+  placeholder: string,
+  required?: boolean,
+  onBlur?: (e: any) => any
 }
 
-const Input = ({ type, placeholder }: Props, ref: ((instance: HTMLInputElement | null) => void) | RefObject<HTMLInputElement> | null ) => {
+const Input = ({ type, placeholder, required, onBlur }: Props, ref: ((instance: HTMLInputElement | null) => void) | RefObject<HTMLInputElement> | null ) => {
   return (
     <>
-      <InputStyled type={type} placeholder={placeholder} ref={ref} />
+      <InputStyled type={type} placeholder={placeholder} ref={ref} required={required} onBlur={onBlur}/>
     </>
   )
 }
