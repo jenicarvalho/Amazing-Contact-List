@@ -1,8 +1,19 @@
-# Contact List
+# Amazing Contact List
 
-It was built using the following stack:
+
+### ⚙️ Stack
 - React
 - TypeScript
-- Vite (for tooling)
 - Stitches (for styling)
 - Vitest (for unit tests)
+
+### 🛠️ Tooling
+- Vite
+- Github Actions (CI/CD)
+
+### ☁️ Cloud Vercel
+http://amazing-contact-list.vercel.app/
+
+### 👇 Demo
+
+![Screenshot](contact-list.gif)
