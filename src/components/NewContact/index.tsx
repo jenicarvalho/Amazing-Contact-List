@@ -50,7 +50,7 @@ const NewContact = ({ handleAddContact, toggleContact }: Props) => {
   )
 
   const onBlurHandler = (ref: RefObject<Ref>) => {
-    if (ref.current?.value !== "") {
+    if (ref.current?.value !== '') {
      return setDisabled(false)
     }  
     setDisabled(true)
@@ -60,10 +60,10 @@ const NewContact = ({ handleAddContact, toggleContact }: Props) => {
   return (
     <Container>
       <h2>Add new contact</h2>
-      <Form onSubmit={formHandler()}>
-        <Input type='text' placeholder='Name' ref={nameInput} required onBlur={() => onBlurHandler(nameInput)} />
-        <Input type='email' placeholder='Email' ref={emailInput} required onBlur={() => onBlurHandler(emailInput)} />
-        <Input type='text' placeholder='Zip code' ref={zipInput}  />
+      <Form onSubmit={formHandler()} role='form'>
+        <Input type='text' name='name' placeholder='Name' ref={nameInput} required onBlur={() => onBlurHandler(nameInput)} />
+        <Input type='email' name='email' placeholder='Email' ref={emailInput} required onBlur={() => onBlurHandler(emailInput)} />
+        <Input type='text' name='zip' placeholder='Zip code' ref={zipInput}  />
         <Button color='primary' role='button' size='small' disabled={disabled}>Save</Button>
       </Form>
     </Container>

@@ -5,13 +5,14 @@ interface Props {
   type: string,
   placeholder: string,
   required?: boolean,
-  onBlur?: (e: any) => any
+  onBlur?: (e: any) => any,
+  name?: string
 }
 
-const Input = ({ type, placeholder, required, onBlur }: Props, ref: ((instance: HTMLInputElement | null) => void) | RefObject<HTMLInputElement> | null ) => {
+const Input = ({ type, placeholder, required, onBlur, name }: Props, ref: ((instance: HTMLInputElement | null) => void) | RefObject<HTMLInputElement> | null ) => {
   return (
     <>
-      <InputStyled type={type} placeholder={placeholder} ref={ref} required={required} onBlur={onBlur}/>
+      <InputStyled type={type} name={name} placeholder={placeholder} ref={ref} required={required} onBlur={onBlur}/>
     </>
   )
 }
